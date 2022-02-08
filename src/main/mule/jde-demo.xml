@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:jde="http://www.mulesoft.org/schema/mule/jde"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/jde http://www.mulesoft.org/schema/mule/jde/current/mule-jde.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="5590813e-3361-452b-ab0e-7f15f8e15ba4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="jde-demoFlow" doc:id="d1589294-3478-4091-b9ec-bc38645ce95d" >
+		<http:listener doc:name="Listener" doc:id="055f82b7-4834-415d-9e82-f34b8c93f8be" config-ref="HTTP_Listener_config" path="demo/{id}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d3cb374c-ec0f-49f2-9495-b3aae95f85df" message="Demo #[message.attributes.queryParams.id]"/>
+		<jde:call-bsfn doc:name="Call bsfn" doc:id="463f5df0-6895-4b7e-a688-09de996feede" bsfnName="AddressBookMasterMBF" config-ref="JDE_Config">
+			<jde:input-parameters ><![CDATA[#[output application/java
+---
+{
+	cActionCode: 'I',
+	mnAddressBookNumber: attributes.uriParams.id
+}]]]></jde:input-parameters>
+		</jde:call-bsfn>
+		<ee:transform doc:name="Transform Message" doc:id="dc8dc527-a915-4d78-b578-0d9634573e83" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+//payload
+{
+	Name:payload.szAlphaName,
+	Addressline1: payload.szAddressLine1,
+	Addressline2: payload.szAddressLine2,
+	Addressline3: payload.szAddressLine3,
+	Addressline4: payload.szAddressLine4,
+	City: payload.szCity,
+	ZipCode: payload.szPostalCode
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

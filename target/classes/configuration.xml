@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:jde="http://www.mulesoft.org/schema/mule/jde" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/jde http://www.mulesoft.org/schema/mule/jde/current/mule-jde.xsd">
+	<jde:config name="JDE_Config" doc:name="JDE Config" doc:id="101f7b1f-8c64-44a9-ba15-a3dd6d11f248" >
+		<jde:connection user="${jde.config.user}" password="${jde.config.password}" environment="${jde.config.environment}" role="${jde.config.role}" />
+	</jde:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="71d34ca1-7ccd-49bb-acc5-edc3a54ba899" file="config.properties" />
+</mule>

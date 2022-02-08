@@ -1,0 +1,31 @@
+{
+  "configs": [
+    "configuration.xml",
+    "jde-demo.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:jde-demo:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.3.0",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "includeTestDependencies": "false",
+      "exportedPackages": [
+        "JPS920"
+      ],
+      "exportedResources": [
+        "JPS920/jdeinterop.ini",
+        "JPS920/jdbj.ini",
+        "JPS920/jdelog.properties",
+        "log4j2.xml",
+        "JDE.lic"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

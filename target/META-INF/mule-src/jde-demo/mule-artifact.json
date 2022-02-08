@@ -1,0 +1,18 @@
+{
+  "minMuleVersion": "4.3.0",
+	"classLoaderModelLoaderDescriptor": {
+		"id": "mule",
+		"attributes": {
+			"exportedResources": [
+				"JPS920/jdeinterop.ini",
+				"JPS920/jdbj.ini",
+				"JPS920/jdelog.properties",
+				"log4j2.xml",
+				"JDE.lic"
+			],
+			"exportedPackages": [
+				"JPS920"],
+			"includeTestDependencies": "false"
+		}
+	}
+}
